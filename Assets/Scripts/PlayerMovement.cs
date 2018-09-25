@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    public RigidBody2D myRigidbody;
+    [SerializeField] //Always privatize variables and use SerializeField to have it still function as public for Unity
+    private Rigidbody2D myRigidbody;
 
 	void Start ()
     {
@@ -15,11 +16,11 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Update ()
     {
-        if (Input.GetKey(left))
+        if (Input.GetKey("left"))
         {
             myRigidbody.velocity = new Vector2(-5, myRigidbody.velocity.y);
         }
-        else if (Input.GetKey(right))
+        else if (Input.GetKey("right"))
         {
             myRigidbody.velocity = new Vector2(5, myRigidbody.velocity.y);
         }
