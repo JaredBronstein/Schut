@@ -13,24 +13,32 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     private float maxSpeed = 5;
 
+    [SerializeField]
+    private float jumpForce = 10;
+
     private float horizontalMovement;
-	void Start ()
-    {
-        //How to print to console
-        //Debug.Log("This is Start!");
-	}
-	
 
 	void Update ()
     {
         horizontalMovement = Input.GetAxis("Horizontal");
-        
-	}
+        Jump();
+    }
     private void FixedUpdate()
+    {
+        Move();        
+    }
+    private void Move()
     {
         myRigidbody.AddForce(Vector2.right * horizontalMovement * accelerationForce);
         Vector2 clampedVelocity = myRigidbody.velocity;
         clampedVelocity.x = Mathf.Clamp(myRigidbody.velocity.x, -maxSpeed, maxSpeed);
         myRigidbody.velocity = clampedVelocity;
+    }
+    private void Jump()
+    {
+        if(Input.GetButtonDown("Jump"))
+        {
+            myRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
     }
 }

@@ -744,5 +744,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 1361343819}
-  accelerationForce: 20
+  accelerationForce: 40
   maxSpeed: 5
+  jumpForce: 10
