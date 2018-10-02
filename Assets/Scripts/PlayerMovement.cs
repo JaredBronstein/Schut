@@ -6,7 +6,9 @@ public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] //Always privatize variables and use SerializeField to have it still function as public for Unity
     private Rigidbody2D myRigidbody;
-
+    [SerializeField]
+    private float speed;
+    private float horizontalMovement;
 	void Start ()
     {
         //How to print to console
@@ -16,13 +18,11 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Update ()
     {
-        if (Input.GetKey("left"))
-        {
-            myRigidbody.velocity = new Vector2(-5, myRigidbody.velocity.y);
-        }
-        else if (Input.GetKey("right"))
-        {
-            myRigidbody.velocity = new Vector2(5, myRigidbody.velocity.y);
-        }
+        horizontalMovement = Input.GetAxis("Horizontal");
+        
 	}
+    private void FixedUpdate()
+    {
+        myRigidbody.AddForce(Vector2.right * horizontalMovement * speed);
+    }
 }

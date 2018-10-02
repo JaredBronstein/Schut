@@ -544,3 +544,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 1361343819}
+  speed: 5
