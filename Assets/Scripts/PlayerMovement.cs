@@ -16,16 +16,34 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     private float jumpForce = 10;
 
+    [SerializeField]
+    private ContactFilter2D groundContactFilter;
+
+    [SerializeField]
+    private Collider2D groundDetectTrigger;
+
+    private bool isOnGround;
     private float horizontalMovement;
+    private Collider2D[] groundHitDetectionResults = new Collider2D[16];
 
 	void Update ()
     {
-        horizontalMovement = Input.GetAxis("Horizontal");
-        Jump();
+        UpdateIsOnGround();
+        HandleHorizontalInput();
+        HandleJumpInput();
     }
     private void FixedUpdate()
     {
         Move();        
+    }
+    private void UpdateIsOnGround()
+    {
+        isOnGround = groundDetectTrigger.OverlapCollider(groundContactFilter, groundHitDetectionResults) > 0;
+
+    }
+    private void HandleHorizontalInput()
+    {
+        horizontalMovement = Input.GetAxis("Horizontal");
     }
     private void Move()
     {
@@ -34,9 +52,9 @@ public class PlayerMovement : MonoBehaviour {
         clampedVelocity.x = Mathf.Clamp(myRigidbody.velocity.x, -maxSpeed, maxSpeed);
         myRigidbody.velocity = clampedVelocity;
     }
-    private void Jump()
+    private void HandleJumpInput()
     {
-        if(Input.GetButtonDown("Jump"))
+        if(Input.GetButtonDown("Jump") && isOnGround)
         {
             myRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }

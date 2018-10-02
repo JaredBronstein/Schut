@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 54541382}
   - component: {fileID: 54541381}
   - component: {fileID: 54541380}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: IceFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,6 +252,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1249688206200750, guid: 0e5122fce72701148826f7c292c8a529, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0e5122fce72701148826f7c292c8a529, type: 2}
   m_IsPrefabParent: 0
@@ -270,7 +274,7 @@ GameObject:
   - component: {fileID: 238114856}
   - component: {fileID: 238114855}
   - component: {fileID: 238114854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +374,7 @@ GameObject:
   - component: {fileID: 356593551}
   - component: {fileID: 356593550}
   - component: {fileID: 356593552}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SlowFloor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -572,6 +576,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1348477359745958, guid: 92cfec124c6512042bb9371fb7b1c0a5, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 92cfec124c6512042bb9371fb7b1c0a5, type: 2}
   m_IsPrefabParent: 0
@@ -588,7 +596,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1041645393}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -622,6 +630,7 @@ GameObject:
   - component: {fileID: 1361343819}
   - component: {fileID: 1361343818}
   - component: {fileID: 1361343820}
+  - component: {fileID: 1361343821}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -747,3 +756,33 @@ MonoBehaviour:
   accelerationForce: 40
   maxSpeed: 5
   jumpForce: 10
+  groundContactFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 256
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  groundDetectTrigger: {fileID: 1361343821}
+--- !u!58 &1361343821
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1361343815}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.2}
+  serializedVersion: 2
+  m_Radius: 0.4
