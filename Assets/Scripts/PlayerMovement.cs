@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,9 @@ public class PlayerMovement : MonoBehaviour {
 
     [SerializeField] //Always privatize variables and use SerializeField to have it still function as public for Unity
     private Rigidbody2D myRigidbody;
+
+    [SerializeField]
+    private PhysicsMaterial2D playerMovingPhysicsMaterial, playerStoppingPhysicsMaterial;
 
     [SerializeField]
     private float accelerationForce = 5;
@@ -22,6 +26,9 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     private Collider2D groundDetectTrigger;
 
+    [SerializeField]
+    private Collider2D playerGroundCollider;
+
     private bool isOnGround;
     private float horizontalMovement;
     private Collider2D[] groundHitDetectionResults = new Collider2D[16];
@@ -30,11 +37,23 @@ public class PlayerMovement : MonoBehaviour {
     {
         UpdateIsOnGround();
         HandleHorizontalInput();
-        HandleJumpInput();
+        HandleJumpInput();       
     }
     private void FixedUpdate()
     {
-        Move();        
+        UpdatePhysicsMaterial();
+        Move();
+    }
+    private void UpdatePhysicsMaterial()
+    {
+        if(horizontalMovement == 0)
+        {
+            playerGroundCollider.sharedMaterial = playerStoppingPhysicsMaterial;
+        }
+        else
+        {
+            playerGroundCollider.sharedMaterial = playerMovingPhysicsMaterial;
+        }
     }
     private void UpdateIsOnGround()
     {
@@ -43,7 +62,7 @@ public class PlayerMovement : MonoBehaviour {
     }
     private void HandleHorizontalInput()
     {
-        horizontalMovement = Input.GetAxis("Horizontal");
+        horizontalMovement = Input.GetAxisRaw("Horizontal");
     }
     private void Move()
     {
