@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour {
     private bool isOnGround;
     private float horizontalMovement;
     private Collider2D[] groundHitDetectionResults = new Collider2D[16];
+    private Checkpoint currentCheckpoint;
 
 	void Update ()
     {
@@ -77,5 +79,21 @@ public class PlayerMovement : MonoBehaviour {
         {
             myRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
+    }
+    public void SetCurrentCheckpoint(Checkpoint newCurrentCheckpoint)
+    {
+        currentCheckpoint = newCurrentCheckpoint;
+    }
+    public void Respawn()
+    {
+        if(currentCheckpoint == null)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else
+        {
+            myRigidbody.velocity = Vector2.zero;
+            transform.position = currentCheckpoint.transform.position;
+        }       
     }
 }

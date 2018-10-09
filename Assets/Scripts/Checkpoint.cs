@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hazard : MonoBehaviour {
-
+public class Checkpoint : MonoBehaviour
+{
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.CompareTag("Player"))
         {
             PlayerMovement player = collision.GetComponent<PlayerMovement>();
-            player.Respawn();            
+            player.SetCurrentCheckpoint(this);
         }
     }
+
 }
