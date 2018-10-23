@@ -7,14 +7,9 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private Rigidbody2D myRigidBody;
 
-    [SerializeField]
-    private float speed = 10;
-
     private float shotDirection;
-
-    PlayerMovement player = collision.GetComponent<PlayerMovement>();
-    // Use this for initialization
-    void Start ()
+	// Use this for initialization
+	void Start ()
     {
 		
 	}
@@ -28,7 +23,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-
+            PlayerMovement player = collision.GetComponent<PlayerMovement>();
             player.Respawn();
         }
         else
