@@ -30,10 +30,17 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField]
     private Collider2D playerGroundCollider;
 
+    [SerializeField]
+    private LayerMask whatIsGround;
+
+    [SerializeField]
+    private Animator anim;
+
     private bool isOnGround;
     private float horizontalMovement;
     private Collider2D[] groundHitDetectionResults = new Collider2D[16];
     private Checkpoint currentCheckpoint;
+    private bool isFacingRight = true;
 
 	void Update ()
     {
@@ -60,6 +67,8 @@ public class PlayerMovement : MonoBehaviour {
     private void UpdateIsOnGround()
     {
         isOnGround = groundDetectTrigger.OverlapCollider(groundContactFilter, groundHitDetectionResults) > 0;
+        anim.SetBool("Ground", isOnGround);
+        anim.SetFloat("vSpeed", myRigidbody.velocity.y);
 
     }
     private void HandleHorizontalInput()
@@ -68,16 +77,26 @@ public class PlayerMovement : MonoBehaviour {
     }
     private void Move()
     {
+        anim.SetFloat("Speed", Mathf.Abs(horizontalMovement));
         myRigidbody.AddForce(Vector2.right * horizontalMovement * accelerationForce);
         Vector2 clampedVelocity = myRigidbody.velocity;
         clampedVelocity.x = Mathf.Clamp(myRigidbody.velocity.x, -maxSpeed, maxSpeed);
         myRigidbody.velocity = clampedVelocity;
+        if(horizontalMovement > 0 && !isFacingRight)
+        {
+            Flip();
+        }
+        else if (horizontalMovement < 0 && isFacingRight)
+        {
+            Flip();
+        }
     }
     private void HandleJumpInput()
     {
         if(Input.GetButtonDown("Jump") && isOnGround)
         {
             myRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            anim.SetBool("Ground", false);
         }
     }
     public void SetCurrentCheckpoint(Checkpoint newCurrentCheckpoint)
@@ -90,6 +109,7 @@ public class PlayerMovement : MonoBehaviour {
     }
     public void Respawn()
     {
+        anim.SetBool("Dead", true);
         if(currentCheckpoint == null)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -99,5 +119,12 @@ public class PlayerMovement : MonoBehaviour {
             myRigidbody.velocity = Vector2.zero;
             transform.position = currentCheckpoint.transform.position;
         }       
+    }
+    private void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }
