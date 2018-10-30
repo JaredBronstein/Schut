@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour {
         if(Input.GetButtonDown("Jump") && isOnGround)
         {
             myRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            anim.SetBool("Ground", false);
+            //anim.SetBool("Ground", false);
         }
     }
     public void SetCurrentCheckpoint(Checkpoint newCurrentCheckpoint)
@@ -113,6 +113,7 @@ public class PlayerMovement : MonoBehaviour {
         if(currentCheckpoint == null)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            anim.SetBool("Dead", false);
         }
         else
         {
