@@ -8,7 +8,7 @@ public class PlayerShoot : MonoBehaviour
     GameObject bulletPrefab;
 
     [SerializeField]
-    private float bulletSpeed = 10;
+    private float bulletSpeed = 40;
 
     [SerializeField]
     private Transform firePoint;

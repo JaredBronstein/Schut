@@ -22,7 +22,7 @@ GameObject:
   m_Layer: 0
   m_Name: FirePoint
   m_TagString: Untagged
-  m_Icon: {fileID: 7250588514170254948, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1918565126183318}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.51, y: -6.52, z: 0}
+  m_LocalPosition: {x: -11.51, y: -6.31, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4831285442403102}
@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1876611263872958}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.775, y: 0.025, z: 0}
+  m_LocalPosition: {x: 0.835, y: 0.008, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4746827295152670}
@@ -106,9 +106,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.2}
+  m_Offset: {x: 0, y: -0.71}
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.43
 --- !u!61 &61382806698144908
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -125,14 +125,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.05, y: 1.85}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.06, y: 1.84}
   m_EdgeRadius: 0
 --- !u!114 &114431592817789000
 MonoBehaviour:
@@ -169,7 +169,6 @@ MonoBehaviour:
     maxNormalAngle: 0
   groundDetectTrigger: {fileID: 58465402376607842}
   playerGroundCollider: {fileID: 61382806698144908}
-  firePoint: {fileID: 4831285442403102}
 --- !u!114 &114987807625691840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -220,8 +219,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d16a74b0585d4b642ac26b22255c6c33, type: 3}
-  m_Color: {r: 0.2502054, g: 0.20518868, b: 0.8207547, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 6c6f851965bf0e849be736f779f77a36, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
