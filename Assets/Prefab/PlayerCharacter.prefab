@@ -171,7 +171,7 @@ MonoBehaviour:
     type: 2}
   accelerationForce: 40
   maxSpeed: 5
-  jumpForce: 10
+  jumpForce: 13
   groundContactFilter:
     useTriggers: 0
     useLayerMask: 1

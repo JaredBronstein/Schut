@@ -32,9 +32,6 @@ public class PlayerMovement : MonoBehaviour
     private Collider2D playerGroundCollider;
 
     [SerializeField]
-    private LayerMask whatIsGround;
-
-    [SerializeField]
     private Animator anim;
 
     private bool isOnGround;
