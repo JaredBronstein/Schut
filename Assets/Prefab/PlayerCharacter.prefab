@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114431592817789000}
   - component: {fileID: 58465402376607842}
   - component: {fileID: 95524993015377100}
+  - component: {fileID: 70603212382673414}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Player
@@ -135,6 +136,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.06, y: 1.84}
   m_EdgeRadius: 0
+--- !u!70 &70603212382673414
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1918565126183318}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: 6c0840587bc6e8e44a74c23228aa19dd, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.05, y: 1.85}
+  m_Direction: 0
 --- !u!95 &95524993015377100
 Animator:
   serializedVersion: 3
@@ -171,7 +187,7 @@ MonoBehaviour:
     type: 2}
   accelerationForce: 40
   maxSpeed: 5
-  jumpForce: 13
+  jumpForce: 15
   groundContactFilter:
     useTriggers: 0
     useLayerMask: 1
@@ -187,10 +203,7 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   groundDetectTrigger: {fileID: 58465402376607842}
-  playerGroundCollider: {fileID: 61382806698144908}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 0
+  playerGroundCollider: {fileID: 70603212382673414}
   anim: {fileID: 95524993015377100}
 --- !u!114 &114987807625691840
 MonoBehaviour:

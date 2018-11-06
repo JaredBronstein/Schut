@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hazard : MonoBehaviour {
-
-    private void OnTriggerEnter2D(Collider2D collision)
+public class Hazard : MonoBehaviour
+{
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerMovement player = collision.GetComponent<PlayerMovement>();
-            player.Respawn();            
+            PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
+            player.Respawn();
         }
     }
 }
