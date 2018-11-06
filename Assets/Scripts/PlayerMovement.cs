@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour {
+public class PlayerMovement : MonoBehaviour
+{
 
     [SerializeField] //Always privatize variables and use SerializeField to have it still function as public for Unity
     private Rigidbody2D myRigidbody;
@@ -42,11 +43,11 @@ public class PlayerMovement : MonoBehaviour {
     private Checkpoint currentCheckpoint;
     private bool isFacingRight = true;
 
-	void Update ()
+    void Update()
     {
         UpdateIsOnGround();
         HandleHorizontalInput();
-        HandleJumpInput();       
+        HandleJumpInput();
     }
     private void FixedUpdate()
     {
@@ -55,7 +56,7 @@ public class PlayerMovement : MonoBehaviour {
     }
     private void UpdatePhysicsMaterial()
     {
-        if(horizontalMovement == 0)
+        if (horizontalMovement == 0)
         {
             playerGroundCollider.sharedMaterial = playerStoppingPhysicsMaterial;
         }
@@ -82,7 +83,7 @@ public class PlayerMovement : MonoBehaviour {
         Vector2 clampedVelocity = myRigidbody.velocity;
         clampedVelocity.x = Mathf.Clamp(myRigidbody.velocity.x, -maxSpeed, maxSpeed);
         myRigidbody.velocity = clampedVelocity;
-        if(horizontalMovement > 0 && !isFacingRight)
+        if (horizontalMovement > 0 && !isFacingRight)
         {
             Flip();
         }
@@ -93,7 +94,7 @@ public class PlayerMovement : MonoBehaviour {
     }
     private void HandleJumpInput()
     {
-        if(Input.GetButtonDown("Jump") && isOnGround)
+        if (Input.GetButtonDown("Jump") && isOnGround)
         {
             myRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             //anim.SetBool("Ground", false);
@@ -101,7 +102,7 @@ public class PlayerMovement : MonoBehaviour {
     }
     public void SetCurrentCheckpoint(Checkpoint newCurrentCheckpoint)
     {
-        if(currentCheckpoint != null)
+        if (currentCheckpoint != null)
             currentCheckpoint.SetIsActivated(false);
 
         currentCheckpoint = newCurrentCheckpoint;
@@ -110,7 +111,7 @@ public class PlayerMovement : MonoBehaviour {
     public void Respawn()
     {
         anim.SetBool("Dead", true);
-        if(currentCheckpoint == null)
+        if (currentCheckpoint == null)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             anim.SetBool("Dead", false);
@@ -119,7 +120,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             myRigidbody.velocity = Vector2.zero;
             transform.position = currentCheckpoint.transform.position;
-        }       
+        }
     }
     private void Flip()
     {
