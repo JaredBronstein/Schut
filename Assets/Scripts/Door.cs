@@ -8,7 +8,7 @@ public class Door : MonoBehaviour
     private bool isPlayerInTrigger;
 
     [SerializeField]
-    private string sceneTwoLoad;
+    private string sceneLoad;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -30,7 +30,7 @@ public class Door : MonoBehaviour
     {
         if(Input.GetButtonDown("Activate") && isPlayerInTrigger)
         {
-            SceneManager.LoadScene(sceneTwoLoad);
+            SceneManager.LoadScene(sceneLoad);
         }
     }
 }

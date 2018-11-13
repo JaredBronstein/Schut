@@ -24,10 +24,6 @@ public class Checkpoint : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateColor();
     }
-    private void Update()
-    {
-        UpdateRotation();
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Player") && !isActivated)
@@ -36,22 +32,6 @@ public class Checkpoint : MonoBehaviour
             PlayerMovement player = collision.GetComponent<PlayerMovement>();
             player.SetCurrentCheckpoint(this);
         }
-    }
-    private void UpdateRotation()
-    {
-        float rotationSpeed = inactiveRotationSpeed;
-
-        if (isActivated)
-            rotationSpeed = activatedRotationSpeed;
-        transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
-    }
-    private void UpdateScale()
-    {
-        float scale = inactivatedScale;
-
-        if (isActivated)
-            scale = activatedScale;
-        transform.localScale = Vector3.one * scale;
     }
     private void UpdateColor()
     {
@@ -64,7 +44,6 @@ public class Checkpoint : MonoBehaviour
     public void SetIsActivated(bool value)
     {
         isActivated = value;
-        UpdateScale();
         UpdateColor();
     }
 }

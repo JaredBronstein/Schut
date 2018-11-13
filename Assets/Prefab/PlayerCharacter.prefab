@@ -117,7 +117,7 @@ BoxCollider2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1918565126183318}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 6c0840587bc6e8e44a74c23228aa19dd, type: 2}
   m_IsTrigger: 0
@@ -185,8 +185,8 @@ MonoBehaviour:
     type: 2}
   playerStoppingPhysicsMaterial: {fileID: 6200000, guid: 6c0840587bc6e8e44a74c23228aa19dd,
     type: 2}
-  accelerationForce: 40
-  maxSpeed: 5
+  accelerationForce: 60
+  maxSpeed: 8
   jumpForce: 15
   groundContactFilter:
     useTriggers: 0
@@ -252,8 +252,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1863009793
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6c6f851965bf0e849be736f779f77a36, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

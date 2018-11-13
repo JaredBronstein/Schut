@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -34,11 +35,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Animator anim;
 
+    [SerializeField]
+    private Text countText;
+
     private bool isOnGround;
     private float horizontalMovement;
     private Collider2D[] groundHitDetectionResults = new Collider2D[16];
     private Checkpoint currentCheckpoint;
     private bool isFacingRight = true;
+    private bool isDead = false;
+    private static int coinCount;
 
     void Update()
     {
@@ -75,19 +81,23 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move()
     {
-        anim.SetFloat("Speed", Mathf.Abs(horizontalMovement));
-        myRigidbody.AddForce(Vector2.right * horizontalMovement * accelerationForce);
-        Vector2 clampedVelocity = myRigidbody.velocity;
-        clampedVelocity.x = Mathf.Clamp(myRigidbody.velocity.x, -maxSpeed, maxSpeed);
-        myRigidbody.velocity = clampedVelocity;
-        if (horizontalMovement > 0 && !isFacingRight)
+        if (!isDead)
         {
-            Flip();
+            anim.SetFloat("Speed", Mathf.Abs(horizontalMovement));
+            myRigidbody.AddForce(Vector2.right * horizontalMovement * accelerationForce);
+            Vector2 clampedVelocity = myRigidbody.velocity;
+            clampedVelocity.x = Mathf.Clamp(myRigidbody.velocity.x, -maxSpeed, maxSpeed);
+            myRigidbody.velocity = clampedVelocity;
+            if (horizontalMovement > 0 && !isFacingRight)
+            {
+                Flip();
+            }
+            else if (horizontalMovement < 0 && isFacingRight)
+            {
+                Flip();
+            }
         }
-        else if (horizontalMovement < 0 && isFacingRight)
-        {
-            Flip();
-        }
+
     }
     private void HandleJumpInput()
     {
@@ -107,17 +117,10 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Respawn()
     {
+        isDead = true;
         anim.SetBool("Dead", true);
-        if (currentCheckpoint == null)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            anim.SetBool("Dead", false);
-        }
-        else
-        {
-            myRigidbody.velocity = Vector2.zero;
-            transform.position = currentCheckpoint.transform.position;
-        }
+        Invoke("RespawnDelay", 1.00f);
+
     }
     private void Flip()
     {
@@ -125,5 +128,31 @@ public class PlayerMovement : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+    }
+    private void RespawnDelay()
+    {
+        if (currentCheckpoint == null)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else
+        {
+            myRigidbody.velocity = Vector2.zero;
+            transform.position = currentCheckpoint.transform.position;
+            isDead = false;
+        }
+        anim.SetBool("Dead", false);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Pickup"))
+        {
+            coinCount++;
+            SetCountText();
+        }
+    }
+    private void SetCountText()
+    {
+        countText.text = "Stars: " + coinCount.ToString();
     }
 }

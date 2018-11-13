@@ -7,7 +7,6 @@ public class Collectible : MonoBehaviour
     private AudioSource activatedSound;
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider2D;
-    private static int coinCount;
 
     private void Start()
     {
@@ -20,7 +19,6 @@ public class Collectible : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            coinCount++;
             activatedSound.Play();
             boxCollider2D.enabled = false;
             spriteRenderer.enabled = false;
