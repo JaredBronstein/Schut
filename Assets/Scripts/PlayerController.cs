@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
         }
-        Debug.Log("There are " + Bullet.allBullets.Count.ToString() + " many bullets on screen");
+        Debug.Log("There are " + Bullet.allBullets.Count.ToString() + " bullets on screen");
     }
     private void FixedUpdate()
     {
@@ -147,6 +147,8 @@ public class PlayerController : MonoBehaviour
     }
     private void RespawnDelay()
     {
+        coinCount = 0;
+        SetCountText();
         if (currentCheckpoint == null)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -154,7 +156,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             myRigidbody.velocity = Vector2.zero;
-            for(int i = 0; i < Bullet.allBullets.Count; i++)
+            for(int i = 0; i < Bullet.allBullets.Count; i++) //Fix this, so far it seems to only destroy the most recent bullet shot instead of the whole list!
             {
                 Destroy(Bullet.allBullets[i].gameObject);
             }

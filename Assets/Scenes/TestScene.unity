@@ -113,6 +113,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &51420860 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1088493351748892, guid: eddf88bde0ee4f846b77c8043aada4a6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1825815986}
+--- !u!61 &51420865
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 51420860}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.5, y: 0.14}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.4, y: 2.4}
+    newSize: {x: 0.48, y: 0.48}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.92, y: 2.1}
+  m_EdgeRadius: 0
 --- !u!1001 &213192130
 Prefab:
   m_ObjectHideFlags: 0
@@ -122,11 +152,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4746827295152670, guid: 4658a6181b099334fbfbef91df471f64, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -9.97
+      value: 1.23
       objectReference: {fileID: 0}
     - target: {fileID: 4746827295152670, guid: 4658a6181b099334fbfbef91df471f64, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.64
+      value: -7.79
       objectReference: {fileID: 0}
     - target: {fileID: 4746827295152670, guid: 4658a6181b099334fbfbef91df471f64, type: 2}
       propertyPath: m_LocalPosition.z
@@ -157,10 +187,6 @@ Prefab:
       propertyPath: countText
       value: 
       objectReference: {fileID: 848099014}
-    - target: {fileID: 1876611263872958, guid: 4658a6181b099334fbfbef91df471f64, type: 2}
-      propertyPath: m_Name
-      value: FirePoint
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4658a6181b099334fbfbef91df471f64, type: 2}
   m_IsPrefabParent: 0
@@ -796,7 +822,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1131451368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.97, y: 0.26751256, z: -10}
+  m_LocalPosition: {x: -7.4877925, y: 0.26751232, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 888331039}
@@ -2572,7 +2598,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1608169635}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.97, y: -3.64, z: -10}
+  m_LocalPosition: {x: 1.23, y: -7.79, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1546660954}
@@ -3078,26 +3104,6 @@ Prefab:
     - target: {fileID: 4343454731170954, guid: eddf88bde0ee4f846b77c8043aada4a6, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114516305292994194, guid: eddf88bde0ee4f846b77c8043aada4a6,
-        type: 2}
-      propertyPath: sceneTwoLoad
-      value: LevelOne
-      objectReference: {fileID: 0}
-    - target: {fileID: 114516305292994194, guid: eddf88bde0ee4f846b77c8043aada4a6,
-        type: 2}
-      propertyPath: sceneLoad
-      value: TestScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 212716494855047722, guid: eddf88bde0ee4f846b77c8043aada4a6,
-        type: 2}
-      propertyPath: m_SortingLayerID
-      value: -503009829
-      objectReference: {fileID: 0}
-    - target: {fileID: 212716494855047722, guid: eddf88bde0ee4f846b77c8043aada4a6,
-        type: 2}
-      propertyPath: m_SortingLayer
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eddf88bde0ee4f846b77c8043aada4a6, type: 2}
