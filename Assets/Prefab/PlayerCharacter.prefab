@@ -20,9 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4831285442403102}
   m_Layer: 0
-  m_Name: FirePoint
+  m_Name: FirePointRight
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -37,7 +37,6 @@ GameObject:
   - component: {fileID: 212290433486566326}
   - component: {fileID: 50882893052124876}
   - component: {fileID: 61382806698144908}
-  - component: {fileID: 114987807625691840}
   - component: {fileID: 114431592817789000}
   - component: {fileID: 58465402376607842}
   - component: {fileID: 95524993015377100}
@@ -56,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1918565126183318}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.51, y: -6, z: 0}
+  m_LocalPosition: {x: -9.97, y: -3.64, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4831285442403102}
@@ -70,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1876611263872958}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.835, y: 0.008, z: 0}
+  m_LocalPosition: {x: 0.835, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4746827295152670}
@@ -205,20 +204,10 @@ MonoBehaviour:
   groundDetectTrigger: {fileID: 58465402376607842}
   playerGroundCollider: {fileID: 70603212382673414}
   anim: {fileID: 95524993015377100}
---- !u!114 &114987807625691840
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1918565126183318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef613437ecd3abe42b46a0c12a368910, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  countText: {fileID: 0}
   bulletPrefab: {fileID: 1788854795639120, guid: b290513ea0762b349926d5bb2d880e65,
     type: 2}
-  bulletSpeed: 10
+  bulletSpeed: 150
   firePoint: {fileID: 4831285442403102}
 --- !u!212 &212290433486566326
 SpriteRenderer:

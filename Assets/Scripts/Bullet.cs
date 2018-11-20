@@ -8,27 +8,20 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D myRigidBody;
 
     private float shotDirection;
-	// Use this for initialization
-	void Start ()
-    {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    { 
 
+    public static List<Bullet> allBullets;
+
+    private void Awake()
+    {
+        allBullets = new List<Bullet>();
+        allBullets.Add(this);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            PlayerMovement player = collision.GetComponent<PlayerMovement>();
+            PlayerController player = collision.GetComponent<PlayerController>();
             player.Respawn();
-        }
-        else
-        {
-
         }
     }
 }

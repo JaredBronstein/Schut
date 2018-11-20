@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] //Always privatize variables and use SerializeField to have it still function as public for Unity
@@ -38,6 +38,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private Text countText;
 
+    [SerializeField]
+    GameObject bulletPrefab;
+
+    [SerializeField]
+    private float bulletSpeed = 40;
+
+    [SerializeField]
+    private Transform firePoint;
+
     private bool isOnGround;
     private float horizontalMovement;
     private Collider2D[] groundHitDetectionResults = new Collider2D[16];
@@ -51,6 +60,11 @@ public class PlayerMovement : MonoBehaviour
         UpdateIsOnGround();
         HandleHorizontalInput();
         HandleJumpInput();
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Shoot();
+        }
+        Debug.Log("There are " + Bullet.allBullets.Count.ToString() + " many bullets on screen");
     }
     private void FixedUpdate()
     {
@@ -128,6 +142,8 @@ public class PlayerMovement : MonoBehaviour
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
+        bulletSpeed = -bulletSpeed;
+        firePoint.position = new Vector3((firePoint.position.x-this.transform.position.x) + this.transform.position.x, firePoint.position.y, firePoint.position.z);
     }
     private void RespawnDelay()
     {
@@ -138,6 +154,11 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             myRigidbody.velocity = Vector2.zero;
+            for(int i = 0; i < Bullet.allBullets.Count; i++)
+            {
+                Destroy(Bullet.allBullets[i].gameObject);
+            }
+            Bullet.allBullets.Clear();
             transform.position = currentCheckpoint.transform.position;
             isDead = false;
         }
@@ -154,5 +175,11 @@ public class PlayerMovement : MonoBehaviour
     private void SetCountText()
     {
         countText.text = "Stars: " + coinCount.ToString();
+    }
+    private void Shoot()
+    {
+        GameObject bulletClone = Instantiate(bulletPrefab, firePoint.position, bulletPrefab.transform.rotation);
+        Rigidbody2D bulletRigidbody = bulletClone.GetComponent<Rigidbody2D>();
+        bulletRigidbody.AddForce(Vector2.right * bulletSpeed);
     }
 }

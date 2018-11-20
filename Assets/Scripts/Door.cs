@@ -10,6 +10,14 @@ public class Door : MonoBehaviour
     [SerializeField]
     private string sceneLoad;
 
+    private void Awake()
+    {
+        if(sceneLoad == string.Empty)
+        {
+            throw new System.Exception(gameObject.name + " has no scene to load. Add one in you dummy!");
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

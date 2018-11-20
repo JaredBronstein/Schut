@@ -53,3 +53,6 @@ TagManager:
   - name: Foreground
     uniqueID: 1863009793
     locked: 0
+  - name: Doorground
+    uniqueID: 3791957467
+    locked: 0
