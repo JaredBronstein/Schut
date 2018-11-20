@@ -64,7 +64,10 @@ public class PlayerController : MonoBehaviour
         {
             Shoot();
         }
-        Debug.Log("There are " + Bullet.allBullets.Count.ToString() + " bullets on screen");
+        if(Bullet.allBullets.Count > 0)
+        {
+            Debug.Log("There are " + Bullet.allBullets.Count.ToString() + " bullets on screen");
+        }
     }
     private void FixedUpdate()
     {
