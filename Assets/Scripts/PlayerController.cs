@@ -179,7 +179,7 @@ public class PlayerController : MonoBehaviour
     }
     private void SetCountText()
     {
-        countText.text = "Stars: " + coinCount.ToString();
+            countText.text = "Stars: " + coinCount.ToString();
     }
     private void Shoot()
     {
