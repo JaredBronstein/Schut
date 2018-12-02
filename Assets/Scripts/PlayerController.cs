@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             myRigidbody.velocity = Vector2.zero;
-            for(int i = 0; i < Bullet.allBullets.Count; i++) //Fix this, so far it seems to only destroy the most recent bullet shot instead of the whole list!
+            for(int i = 0; i < Bullet.allBullets.Count; i++)
             {
                 Destroy(Bullet.allBullets[i].gameObject);
             }

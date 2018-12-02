@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField]
-    private Rigidbody2D myRigidBody;
-
     private float shotDirection;
 
     public static List<Bullet> allBullets = new List<Bullet>();
