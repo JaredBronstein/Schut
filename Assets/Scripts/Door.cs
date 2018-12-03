@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
-    private bool isPlayerInTrigger;
-
     [SerializeField]
     private string sceneLoad;
+
+    private bool isPlayerInTrigger;
 
     private void Awake()
     {

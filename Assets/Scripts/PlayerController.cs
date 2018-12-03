@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-
-    [SerializeField] //Always privatize variables and use SerializeField to have it still function as public for Unity
+    #region Serialized fields
+    [SerializeField]
     private Rigidbody2D myRigidbody;
 
     [SerializeField]
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
 
     [SerializeField]
-    private Text countText;
+    private Text countText; //This is for the Scoring system, allows access to the canvas system
 
     [SerializeField]
     GameObject bulletPrefab;
@@ -45,28 +45,51 @@ public class PlayerController : MonoBehaviour
     private float bulletSpeed = 40;
 
     [SerializeField]
-    private Transform firePoint;
-
+    private Transform firePoint; //Location in which the bullet spawns from
+    #endregion
+    #region private fields
     private bool isOnGround;
     private float horizontalMovement;
     private Collider2D[] groundHitDetectionResults = new Collider2D[16];
     private Checkpoint currentCheckpoint;
     private bool isFacingRight = true;
     private bool isDead = false;
-    private static int coinCount;
+    #endregion
+    public static int coinCount;
+    #region public functions
+    public void SetCurrentCheckpoint(Checkpoint newCurrentCheckpoint)
+    {
+        if (currentCheckpoint != null)
+            currentCheckpoint.SetIsActivated(false);
 
+        currentCheckpoint = newCurrentCheckpoint;
+        currentCheckpoint.SetIsActivated(true);
+    }
+    public void Die()
+    {
+        isDead = true;
+        anim.SetBool("Dead", true);
+        Invoke("Respawn", 1.00f);
+        coinCount = 0;
+        SetCountText();
+    }
+    public void SetCountText()
+    {
+            countText.text = "Stars: " + coinCount.ToString();
+    }
+    #endregion
     void Update()
     {
         UpdateIsOnGround();
-        HandleHorizontalInput();
+        UpdateHorizontalInput();
         HandleJumpInput();
         if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
         }
-        if(Bullet.allBullets.Count > 0)
+        if(Bullet.AllBullets.Count > 0)
         {
-            Debug.Log("There are " + Bullet.allBullets.Count.ToString() + " bullets on screen");
+            Debug.Log("There are " + Bullet.AllBullets.Count.ToString() + " bullets on screen");
         }
     }
     private void FixedUpdate()
@@ -89,10 +112,8 @@ public class PlayerController : MonoBehaviour
     {
         isOnGround = groundDetectTrigger.OverlapCollider(groundContactFilter, groundHitDetectionResults) > 0;
         anim.SetBool("Ground", isOnGround);
-        anim.SetFloat("vSpeed", myRigidbody.velocity.y);
-
     }
-    private void HandleHorizontalInput()
+    private void UpdateHorizontalInput()
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
     }
@@ -102,42 +123,30 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetFloat("Speed", Mathf.Abs(horizontalMovement));
             myRigidbody.AddForce(Vector2.right * horizontalMovement * accelerationForce);
-            Vector2 clampedVelocity = myRigidbody.velocity;
-            clampedVelocity.x = Mathf.Clamp(myRigidbody.velocity.x, -maxSpeed, maxSpeed);
-            myRigidbody.velocity = clampedVelocity;
-            if (horizontalMovement > 0 && !isFacingRight)
-            {
-                Flip();
-            }
-            else if (horizontalMovement < 0 && isFacingRight)
-            {
-                Flip();
-            }
+            UpdateCharacterDirection();
         }
-
+    }
+    private void UpdateCharacterDirection()
+    {
+        Vector2 clampedVelocity = myRigidbody.velocity;
+        clampedVelocity.x = Mathf.Clamp(myRigidbody.velocity.x, -maxSpeed, maxSpeed);
+        myRigidbody.velocity = clampedVelocity;
+        if (horizontalMovement > 0 && !isFacingRight)
+        {
+            Flip();
+        }
+        else if (horizontalMovement < 0 && isFacingRight)
+        {
+            Flip();
+        }
     }
     private void HandleJumpInput()
     {
         if (Input.GetButtonDown("Jump") && isOnGround)
         {
             myRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            //anim.SetBool("Ground", false);
+            anim.SetFloat("vSpeed", myRigidbody.velocity.y);
         }
-    }
-    public void SetCurrentCheckpoint(Checkpoint newCurrentCheckpoint)
-    {
-        if (currentCheckpoint != null)
-            currentCheckpoint.SetIsActivated(false);
-
-        currentCheckpoint = newCurrentCheckpoint;
-        currentCheckpoint.SetIsActivated(true);
-    }
-    public void Respawn()
-    {
-        isDead = true;
-        anim.SetBool("Dead", true);
-        Invoke("RespawnDelay", 1.00f);
-
     }
     private void Flip()
     {
@@ -148,10 +157,8 @@ public class PlayerController : MonoBehaviour
         bulletSpeed = -bulletSpeed;
         firePoint.position = new Vector3((firePoint.position.x-this.transform.position.x) + this.transform.position.x, firePoint.position.y, firePoint.position.z);
     }
-    private void RespawnDelay()
+    private void Respawn()
     {
-        coinCount = 0;
-        SetCountText();
         if (currentCheckpoint == null)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -159,27 +166,19 @@ public class PlayerController : MonoBehaviour
         else
         {
             myRigidbody.velocity = Vector2.zero;
-            for(int i = 0; i < Bullet.allBullets.Count; i++)
-            {
-                Destroy(Bullet.allBullets[i].gameObject);
-            }
-            Bullet.allBullets.Clear();
+            DeleteBullets();
             transform.position = currentCheckpoint.transform.position;
             isDead = false;
         }
         anim.SetBool("Dead", false);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void DeleteBullets()
     {
-        if (collision.gameObject.CompareTag("Pickup"))
+        for (int i = 0; i < Bullet.AllBullets.Count; i++)
         {
-            coinCount++;
-            SetCountText();
+            Destroy(Bullet.AllBullets[i].gameObject);
         }
-    }
-    private void SetCountText()
-    {
-            countText.text = "Stars: " + coinCount.ToString();
+        Bullet.AllBullets.Clear();
     }
     private void Shoot()
     {

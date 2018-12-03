@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class QuitOnEnter : StateMachineBehaviour
+public class QuitOnEnter : StateMachineBehaviour //Quits game on the mouse entering the object's collider
 {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -16,5 +16,4 @@ public class QuitOnEnter : StateMachineBehaviour
         Application.Quit ();
 #endif
     }
-
 }

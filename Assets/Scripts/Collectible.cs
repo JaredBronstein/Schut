@@ -23,6 +23,9 @@ public class Collectible : MonoBehaviour
             boxCollider2D.enabled = false;
             spriteRenderer.enabled = false;
             Destroy(gameObject,activatedSound.clip.length);
+            PlayerController.coinCount++;
+            PlayerController player = collision.GetComponent<PlayerController>();
+            player.SetCountText();
         }
     }
 }

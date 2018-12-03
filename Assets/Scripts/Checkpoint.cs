@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    //[SerializeField]
-    //private float inactiveRotationSpeed = 100, activatedRotationSpeed = 300;
-
-    //[SerializeField]
-    //private float inactivatedScale = 1, activatedScale = 1.5f;
-
     [SerializeField]
     private Color inactivatedColor, activatedColor;
 
