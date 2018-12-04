@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class QuitOnClick : MonoBehaviour //Called from the quit button to exit the game
+public class QuitOnClick : MonoBehaviour
 {
+    /// <summary>
+    /// Called from the quit button to exit the game
+    /// </summary>
     public void Quit()
     {
 #if UNITY_EDITOR

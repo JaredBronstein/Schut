@@ -13,12 +13,10 @@ public class Bullet : MonoBehaviour //Adds created bullet to an array so when th
         {
             return allBullets;
         }
-        set
-        {
-
-        }
     }
-
+    /// <summary>
+    /// When created adds self to an array that way when the player respawns from a checkpoint all bullets in game can be deleted
+    /// </summary>
     private void Awake()
     {
         allBullets.Add(this);

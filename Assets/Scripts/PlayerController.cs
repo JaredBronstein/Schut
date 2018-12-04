@@ -35,8 +35,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Animator anim;
 
-    [SerializeField]
-    private Text countText; //This is for the Scoring system, allows access to the canvas system
+    [SerializeField] [Tooltip("The UI/Scoring Text")]
+    private Text countText;
 
     [SerializeField]
     GameObject bulletPrefab;
@@ -44,8 +44,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float bulletSpeed = 40;
 
-    [SerializeField]
-    private Transform firePoint; //Location in which the bullet spawns from
+    [SerializeField] [Tooltip("Location in which the bullet spawns from")]
+    private Transform firePoint; 
     #endregion
     #region private fields
     private bool isOnGround;
@@ -123,14 +123,14 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetFloat("Speed", Mathf.Abs(horizontalMovement));
             myRigidbody.AddForce(Vector2.right * horizontalMovement * accelerationForce);
+            Vector2 clampedVelocity = myRigidbody.velocity;
+            clampedVelocity.x = Mathf.Clamp(myRigidbody.velocity.x, -maxSpeed, maxSpeed);
+            myRigidbody.velocity = clampedVelocity;
             UpdateCharacterDirection();
         }
     }
     private void UpdateCharacterDirection()
     {
-        Vector2 clampedVelocity = myRigidbody.velocity;
-        clampedVelocity.x = Mathf.Clamp(myRigidbody.velocity.x, -maxSpeed, maxSpeed);
-        myRigidbody.velocity = clampedVelocity;
         if (horizontalMovement > 0 && !isFacingRight)
         {
             Flip();
@@ -142,10 +142,11 @@ public class PlayerController : MonoBehaviour
     }
     private void HandleJumpInput()
     {
+        anim.SetFloat("vSpeed", myRigidbody.velocity.y);
         if (Input.GetButtonDown("Jump") && isOnGround)
         {
             myRigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            anim.SetFloat("vSpeed", myRigidbody.velocity.y);
+
         }
     }
     private void Flip()
