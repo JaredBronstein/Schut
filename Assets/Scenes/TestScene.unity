@@ -350,6 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7531bb6cafa8e6b4d9461425196bf037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
 --- !u!66 &875709665
 CompositeCollider2D:
   m_ObjectHideFlags: 0

@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 61467052458967370}
   - component: {fileID: 50319276457476768}
   - component: {fileID: 114585436290106130}
+  - component: {fileID: 95403967409693374}
   m_Layer: 0
   m_Name: BreakableBlock
   m_TagString: Untagged
@@ -88,6 +89,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &95403967409693374
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1810123979726286}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 116c2fae55d7a0e4d99c153216732834, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114585436290106130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7531bb6cafa8e6b4d9461425196bf037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 95403967409693374}
 --- !u!212 &212562114725456018
 SpriteRenderer:
   m_ObjectHideFlags: 1

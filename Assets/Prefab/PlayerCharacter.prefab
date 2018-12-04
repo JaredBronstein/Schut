@@ -207,7 +207,7 @@ MonoBehaviour:
   countText: {fileID: 0}
   bulletPrefab: {fileID: 1788854795639120, guid: b290513ea0762b349926d5bb2d880e65,
     type: 2}
-  bulletSpeed: 150
+  bulletSpeed: 250
   firePoint: {fileID: 4831285442403102}
 --- !u!212 &212290433486566326
 SpriteRenderer:
