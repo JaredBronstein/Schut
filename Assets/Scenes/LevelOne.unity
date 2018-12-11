@@ -16287,6 +16287,16 @@ Prefab:
       propertyPath: countText
       value: 
       objectReference: {fileID: 466315690}
+    - target: {fileID: 61382806698144908, guid: 4658a6181b099334fbfbef91df471f64,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61382806698144908, guid: 4658a6181b099334fbfbef91df471f64,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4658a6181b099334fbfbef91df471f64, type: 2}
   m_IsPrefabParent: 0
