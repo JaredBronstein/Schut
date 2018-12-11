@@ -177,7 +177,10 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < Bullet.AllBullets.Count; i++)
         {
-            Destroy(Bullet.AllBullets[i].gameObject);
+            if(Bullet.AllBullets[i] != null)
+            {
+                Destroy(Bullet.AllBullets[i].gameObject);
+            }
         }
         Bullet.AllBullets.Clear();
     }
